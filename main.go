@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/atotto/clipboard"
@@ -18,21 +19,26 @@ func main() {
 	text, _ := reader.ReadString('\n')
 	text = strings.TrimSpace(text)
 
+	r, _ := regexp.Compile("\\s+")
+	text = r.ReplaceAllString(text, " ")
+
 	letters := strings.Split(text, "")
 
-	var bigtext []string
+	var bigletters []string
 
 	for _, value := range letters {
 		if value != " " {
-			bigtext = append(bigtext, ":regional_indicator_"+strings.ToLower(value)+":")
+			bigletters = append(bigletters, ":regional_indicator_"+strings.ToLower(value)+":")
 		} else {
-			bigtext = append(bigtext, " ")
+			bigletters = append(bigletters, " ")
 		}
 	}
 	// fmt.Println("----------------- Here ya go -----------------")
-	// fmt.Println(strings.Join(bigtext, " "))
+	// fmt.Println(strings.Join(bigletters, " "))
 	// fmt.Println("----------------------------------------------")
-	clipboard.WriteAll(strings.Join(bigtext, " "))
+	bigtext := strings.Join(bigletters, " ")
+
+	clipboard.WriteAll(bigtext)
 
 	fmt.Println("----------------- Text copied! -----------------")
 
