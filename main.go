@@ -14,9 +14,22 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("----------------- Welcome to discord big text utility by karthin#0073 -----------------")
-	fmt.Print("Enter text: ")
 
-	text, _ := reader.ReadString('\n')
+	for true {
+		fmt.Print("Enter text: ")
+
+		text, _ := reader.ReadString('\n')
+
+		bigtext := bigify(text)
+
+		clipboard.WriteAll(bigtext)
+
+		fmt.Println("----------------- Text copied! -----------------")
+
+	}
+}
+
+func bigify(text string) string {
 	text = strings.TrimSpace(text)
 
 	r, _ := regexp.Compile("\\s+")
@@ -36,10 +49,5 @@ func main() {
 	// fmt.Println("----------------- Here ya go -----------------")
 	// fmt.Println(strings.Join(bigletters, " "))
 	// fmt.Println("----------------------------------------------")
-	bigtext := strings.Join(bigletters, " ")
-
-	clipboard.WriteAll(bigtext)
-
-	fmt.Println("----------------- Text copied! -----------------")
-
+	return strings.Join(bigletters, " ")
 }
