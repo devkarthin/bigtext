@@ -11,16 +11,18 @@ import (
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin)
 
 	fmt.Println("----------------- Welcome to discord big text utility by karthin#0073 -----------------")
 
-	for true {
+	for {
+
 		fmt.Print("Enter text: ")
+		if !scanner.Scan() {
+			break
+		}
 
-		text, _ := reader.ReadString('\n')
-
-		bigtext := bigify(text)
+		bigtext := bigify(scanner.Text())
 
 		clipboard.WriteAll(bigtext)
 
