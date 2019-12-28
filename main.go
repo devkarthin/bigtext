@@ -73,6 +73,8 @@ func bigify(text string) string {
 			value = ":hash:"
 		} else if value == "?" {
 			value = ":question:"
+		} else if value == "!" {
+			value = ":exclamation:"
 		} else {
 			// bigletters = append(bigletters, value)
 			continue
