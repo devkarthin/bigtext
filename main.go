@@ -40,7 +40,7 @@ func bigify(text string) string {
 
 	var bigletters []string
 
-	for index, value := range letters {
+	for _, value := range letters {
 		if regexp.MustCompile("[a-zA-Z]").MatchString(value) {
 			value = ":regional_indicator_" + value + ":"
 		} else if regexp.MustCompile("[0-9]").MatchString(value) {
@@ -68,13 +68,13 @@ func bigify(text string) string {
 			case "10":
 				value = ":keycap_ten:"
 			}
-		} else if value == " " && letters[index+1] != "$" {
+		} else if value == " " {
 		} else if value == "#" {
 			value = ":hash:"
 		} else if value == "?" {
 			value = ":question:"
 		} else {
-			bigletters = append(bigletters, value)
+			// bigletters = append(bigletters, value)
 			continue
 		}
 		bigletters = append(bigletters, value+" ")
