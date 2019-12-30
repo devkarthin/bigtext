@@ -1,10 +1,13 @@
 package main
 
-import "errors"
+import (
+	"errors"
+	"strings"
+)
 
 // check if emoji exists in map "emoji"
 func getEmoji(emojiName string) (string, error) {
-	if value, ok := emojis[emojiName]; ok {
+	if value, ok := emojis[strings.ToLower(emojiName)]; ok {
 		return value, nil
 	}
 	return emojiName, errors.New("Couldn't find emoji")
@@ -46,4 +49,7 @@ var emojis = map[string]string{
 	"6": "6️⃣",
 	"7": "7️⃣",
 	"8": "8️⃣",
-	"9": "9️⃣"}
+	"9": "9️⃣",
+	"!": "❗️",
+	"?": "❓",
+	"#": "#️⃣"}
