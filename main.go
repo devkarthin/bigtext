@@ -10,7 +10,15 @@ import (
 	"github.com/atotto/clipboard"
 )
 
+var welcomemsg = strings.Repeat("-", 5) + " Welcome to big text utility v2 by karthin#0073 " + strings.Repeat("-", 5)
+var copiedmsg = strings.Repeat("-", 10) + " Text copied " + strings.Repeat("-", 10)
+
 func main() {
+
+	fmt.Println(welcomemsg)
+	fmt.Println("DISCLAIMER: THIS IS A PRE-PRODUCTION RELEASE. PLEASE REPORT ANY BUGS/ISSUES TO MY GITHUB OR BY CONTACTING ME ON DISCORD")
+	fmt.Println()
+
 	scanner := bufio.NewScanner(os.Stdin)
 
 	// infinite loop of asking for input
@@ -29,7 +37,8 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println("Text copied")
+
+		fmt.Println(copiedmsg)
 
 	}
 }
