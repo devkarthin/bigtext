@@ -1,10 +1,13 @@
 package main
 
-func getEmoji(emojiName string) string {
+import "errors"
+
+// check if emoji exists in map "emoji"
+func getEmoji(emojiName string) (string, error) {
 	if value, ok := emojis[emojiName]; ok {
-		return value
+		return value, nil
 	}
-	return emojiName
+	return emojiName, errors.New("Couldn't find emoji")
 }
 
 var emojis = map[string]string{
